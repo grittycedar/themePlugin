@@ -1,9 +1,10 @@
 package com.imesong.themedemo;
 
-import android.support.v7.app.AppCompatActivity;
+import com.imesong.themeplugin.BaseActivity;
+
 import android.os.Bundle;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
