@@ -6,9 +6,9 @@ import android.content.Context;
 
 public class SkinConfig {
 	public  static final String     NAMESPACE 				=   "http://schemas.android.com/android/skin";
-	public 	static final String 	SKIN_SUFFIX				= 	".thm";
-	public 	static final String 	SKIN_FOLER_NAME 		= 	"thm";
-	public 	static final String 	PREF_CUSTOM_SKIN_PATH 	= 	"com.theme2345.demo";
+	public 	static final String 	SKIN_SUFFIX				= 	".theme";
+	public 	static final String 	SKIN_FOLER_NAME 		= 	"skin";
+	public 	static final String 	PREF_CUSTOM_SKIN_PATH 	= 	"com.imesong.themepackage";
 	public  static final String 	DEFALT_SKIN 			= 	"com.theme2345.demo";
 	public 	static final String 	SKIN_FROM	 			= 	"com.theme2345.demo_from";
 	public 	static final int 		FROM_INTERNAL 			= 	0;

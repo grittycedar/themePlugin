@@ -1,1 +1,1 @@
-include ':app', ':themePlugin'
+include ':app', ':themePlugin', ':themepackage'
