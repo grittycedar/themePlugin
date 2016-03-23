@@ -9,7 +9,7 @@ public class SkinConfig {
 	public 	static final String 	SKIN_SUFFIX				= 	".theme";
 	public 	static final String 	SKIN_FOLER_NAME 		= 	"skin";
 	public 	static final String 	PREF_CUSTOM_SKIN_PATH 	= 	"com_imesong_themepackage";
-	public  static final String 	DEFALT_SKIN 			= 	"com_imesong_theme_default";
+	public  static final String 	DEFALT_SKIN 			= 	"theme_default";
 	public 	static final int 		FROM_INTERNAL 			= 	0;
     public 	static final int 		FROM_EXTERNAL 			= 	1;
     public 	static final String 	ATTR_SKIN_ENABLE	    =   "enable";

@@ -132,6 +132,10 @@ public class SkinManager implements ISkinLoader {
 		if(SkinConfig.isDefaultSkin(context)){ return; }
 		load(skin, callback);
 	}
+
+	public void load(String path){
+		load(path,null);
+	}
 	
 	/**
 	 * Load resources from apk in asyc task

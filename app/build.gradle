@@ -27,5 +27,6 @@ dependencies {
     compile 'com.jakewharton:butterknife:7.0.1'
     compile 'com.liulishuo.filedownloader:library:0.2.0'
     compile 'com.daimajia.numberprogressbar:library:1.2@aar'
+    compile 'net.soulwolf.widget:materialRadio:1.0.1'
 
 }

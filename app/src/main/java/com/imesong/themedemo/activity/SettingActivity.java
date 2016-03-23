@@ -1,122 +1,139 @@
 package com.imesong.themedemo.activity;
 
+import com.daimajia.numberprogressbar.NumberProgressBar;
 import com.imesong.themedemo.R;
+import com.imesong.themedemo.utils.ThemeUtil;
 import com.imesong.themeplugin.BaseActivity;
+import com.imesong.themeplugin.config.SkinConfig;
 import com.imesong.themeplugin.listener.ILoaderListener;
 import com.imesong.themeplugin.loader.SkinManager;
 import com.imesong.themeplugin.util.L;
+import com.liulishuo.filedownloader.BaseDownloadTask;
+import com.liulishuo.filedownloader.FileDownloadListener;
+import com.liulishuo.filedownloader.FileDownloader;
 
 import android.os.Bundle;
-import android.os.Environment;
-import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
 public class SettingActivity extends BaseActivity {
 
-	/**
-	 * Put this skin file on the root of sdcard
-	 * eg:
-	 * /mnt/sdcard/ThemeStyle.skin
-	 */
-	private static final String SKIN_NAME = "ThemeStyle.skin";
-	private static final String SKIN_DIR = Environment
-			.getExternalStorageDirectory() + File.separator + SKIN_NAME;
-	
-	
-	private TextView titleText;
-	private Button setOfficalSkinBtn;
-	private Button setNightSkinBtn;
-	
-	private boolean isOfficalSelected = true;
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_setting);
+    @Bind(R.id.title_text)
+    TextView titleText;
+    @Bind(R.id.set_default_skin)
+    Button setDefaultSkin;
+    @Bind(R.id.set_night_skin)
+    Button setNightSkin;
+    @Bind(R.id.update_online)
+    Button updateOnline;
+    @Bind(R.id.progressbar)
+    NumberProgressBar progressbar;
 
-		initView();
-	}
+    private String curSkin;
 
-	private void initView() {
-		titleText = (TextView) findViewById(R.id.title_text);
-		titleText.setText("设置皮肤");
-		setOfficalSkinBtn = (Button) findViewById(R.id.set_default_skin);
-		setNightSkinBtn = (Button) findViewById(R.id.set_night_skin);
-		
-		
-		isOfficalSelected = !SkinManager.getInstance().isExternalSkin();
-		
-		if(isOfficalSelected){
-			setOfficalSkinBtn.setText("官方默认(当前)");
-			setNightSkinBtn.setText("黑色幻想");
-		}else{
-			setNightSkinBtn.setText("黑色幻想(当前)");
-			setOfficalSkinBtn.setText("官方默认");			
-		}
-		
-		setNightSkinBtn.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				onSkinSetClick();
-			}
-		});
-		
-		setOfficalSkinBtn.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				onSkinResetClick();
-			}
-		});
-	}
+    private static final String NIGHT_URL = "http://app.2345.com/browser/api/data/ThemeStyle.skin";
+    private static final String GOLD_URL = "http://app.2345.com/browser/api/data/CrazyGold.skin";
 
-	protected void onSkinResetClick() {
-		if(!isOfficalSelected){
-			SkinManager.getInstance().restoreDefaultTheme();
-			Toast.makeText(getApplicationContext(), "切换成功", Toast.LENGTH_SHORT).show();			
-			setOfficalSkinBtn.setText("官方默认(当前)");
-			setNightSkinBtn.setText("黑色幻想");
-			isOfficalSelected = true;
-		}
-	}
 
-	private void onSkinSetClick() {
-		if(!isOfficalSelected) return;
-		
-		File skin = new File(SKIN_DIR);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_setting);
+        ButterKnife.bind(this);
 
-		if(skin == null || !skin.exists()){
-			Toast.makeText(getApplicationContext(), "请检查" + SKIN_DIR + "是否存在", Toast.LENGTH_SHORT).show();
-			return;
-		}
+        initView();
+    }
 
-		SkinManager.getInstance().load(skin.getAbsolutePath(),
-				new ILoaderListener() {
-					@Override
-					public void onStart() {
-						L.e("startloadSkin");
-					}
+    private void initView() {
+        curSkin = SkinConfig.getCustomSkinPath(this);
+        titleText.setText(curSkin);
+    }
 
-					@Override
-					public void onSuccess() {
-						L.e("loadSkinSuccess");
-						Toast.makeText(getApplicationContext(), "切换成功", Toast.LENGTH_SHORT).show();
-						setNightSkinBtn.setText("黑色幻想(当前)");
-						setOfficalSkinBtn.setText("官方默认");		
-						isOfficalSelected = false;
-					}
+    @OnClick(R.id.set_default_skin)
+    public void onSkinResetClick() {
+        SkinManager.getInstance().restoreDefaultTheme();
+        titleText.setText("theme_default");
+    }
 
-					@Override
-					public void onFailed() {
-						L.e("loadSkinFail");
-						Toast.makeText(getApplicationContext(), "切换失败", Toast.LENGTH_SHORT).show();
-					}
-				});
-	}
+    @OnClick(R.id.set_night_skin)
+    public void onSkinSetNightClick() {
+        File skin = new File(ThemeUtil.NIGHT_THEME_PATH);
+
+        if (skin == null || !skin.exists()) {
+            Toast.makeText(getApplicationContext(), "请检查" + ThemeUtil.NIGHT_THEME_PATH + "是否存在", Toast
+                    .LENGTH_SHORT)
+                    .show();
+            return;
+        }
+        SkinManager.getInstance().load(skin.getAbsolutePath(),skinLoadListener);
+    }
+
+    @OnClick(R.id.update_online)
+    public void onlineUpdate() {
+                FileDownloader.getImpl().create(GOLD_URL).setPath(ThemeUtil.THEME_PATH_HOME).setListener(new
+                                                                                                  FileDownloadListener
+                        () {
+                    @Override
+                    protected void pending(BaseDownloadTask task, int soFarBytes, int totalBytes) {
+                        L.d("syq", "blockComplete");
+                    }
+
+                    @Override
+                    protected void progress(BaseDownloadTask task, int soFarBytes, int totalBytes) {
+                    }
+
+                    @Override
+                    protected void blockComplete(BaseDownloadTask task) {
+                        L.d("syq", "blockComplete");
+                    }
+
+                    @Override
+                    protected void completed(BaseDownloadTask task) {
+                        SkinManager.getInstance().load(task.getPath(),skinLoadListener);
+                    }
+
+                    @Override
+                    protected void paused(BaseDownloadTask task, int soFarBytes, int totalBytes) {
+
+                    }
+
+                    @Override
+                    protected void error(BaseDownloadTask task, Throwable e) {
+                        L.d("syq", "error");
+                        e.printStackTrace();
+                    }
+
+                    @Override
+                    protected void warn(BaseDownloadTask task) {
+                        L.d("syq", "warn");
+                    }
+                }).start();
+    }
+
+    private ILoaderListener skinLoadListener = new ILoaderListener() {
+        @Override
+        public void onStart() {
+            L.d("syq","skinLoadListener onStart");
+        }
+
+        @Override
+        public void onSuccess() {
+            L.d("syq","skinLoadListener onSuccess");
+            curSkin= SkinConfig.getCustomSkinPath(SettingActivity.this);
+            titleText.setText(curSkin);
+        }
+
+        @Override
+        public void onFailed() {
+            L.d("syq","skinLoadListener onFailed");
+        }
+    };
 }
