@@ -13,19 +13,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:text="每日新闻"
-        skin:enable="true" 
+        skin:enable="true"
         android:visibility="gone"
         android:textColor="@color/color_title_bar_text"
         android:textSize="20sp" />
 
     <Button
         android:id="@+id/title_bar_setting_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
         android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        android:layout_marginRight="20dp"
+        android:layout_marginRight="10dp"
         skin:enable="true"
         android:background="@drawable/setting_btn_selector"/>
 

@@ -8,9 +8,6 @@ import com.imesong.themeplugin.config.SkinConfig;
 import com.imesong.themeplugin.listener.ILoaderListener;
 import com.imesong.themeplugin.loader.SkinManager;
 import com.imesong.themeplugin.util.L;
-import com.liulishuo.filedownloader.BaseDownloadTask;
-import com.liulishuo.filedownloader.FileDownloadListener;
-import com.liulishuo.filedownloader.FileDownloader;
 
 import android.os.Bundle;
 import android.widget.Button;
@@ -48,7 +45,6 @@ public class SettingActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
         ButterKnife.bind(this);
-
         initView();
     }
 
@@ -78,44 +74,46 @@ public class SettingActivity extends BaseActivity {
 
     @OnClick(R.id.update_online)
     public void onlineUpdate() {
-                FileDownloader.getImpl().create(GOLD_URL).setPath(ThemeUtil.GOLD_THEME_PATH).setListener(new
-                                                                                                  FileDownloadListener
-                        () {
-                    @Override
-                    protected void pending(BaseDownloadTask task, int soFarBytes, int totalBytes) {
-                        L.d("syq", "blockComplete");
-                    }
+//                FileDownloader.getImpl().create(GOLD_URL).setPath(ThemeUtil.GOLD_THEME_PATH).setListener(new
+//                                                                                                  FileDownloadListener
+//                        () {
+//                    @Override
+//                    protected void pending(BaseDownloadTask task, int soFarBytes, int totalBytes) {
+//                        L.d("syq", "blockComplete");
+//                    }
+//
+//                    @Override
+//                    protected void progress(BaseDownloadTask task, int soFarBytes, int totalBytes) {
+//                    }
+//
+//                    @Override
+//                    protected void blockComplete(BaseDownloadTask task) {
+//                        L.d("syq", "blockComplete");
+//                    }
+//
+//                    @Override
+//                    protected void completed(BaseDownloadTask task) {
+//                        SkinManager.getInstance().load(task.getPath(),skinLoadListener);
+//                    }
+//
+//                    @Override
+//                    protected void paused(BaseDownloadTask task, int soFarBytes, int totalBytes) {
+//
+//                    }
+//
+//                    @Override
+//                    protected void error(BaseDownloadTask task, Throwable e) {
+//                        L.d("syq", "error");
+//                        e.printStackTrace();
+//                    }
+//
+//                    @Override
+//                    protected void warn(BaseDownloadTask task) {
+//                        L.d("syq", "warn");
+//                    }
+//                }).start();
 
-                    @Override
-                    protected void progress(BaseDownloadTask task, int soFarBytes, int totalBytes) {
-                    }
-
-                    @Override
-                    protected void blockComplete(BaseDownloadTask task) {
-                        L.d("syq", "blockComplete");
-                    }
-
-                    @Override
-                    protected void completed(BaseDownloadTask task) {
-                        SkinManager.getInstance().load(task.getPath(),skinLoadListener);
-                    }
-
-                    @Override
-                    protected void paused(BaseDownloadTask task, int soFarBytes, int totalBytes) {
-
-                    }
-
-                    @Override
-                    protected void error(BaseDownloadTask task, Throwable e) {
-                        L.d("syq", "error");
-                        e.printStackTrace();
-                    }
-
-                    @Override
-                    protected void warn(BaseDownloadTask task) {
-                        L.d("syq", "warn");
-                    }
-                }).start();
+        SkinManager.getInstance().load(ThemeUtil.GOLD_THEME_PATH);
     }
 
     private ILoaderListener skinLoadListener = new ILoaderListener() {
