@@ -39,7 +39,7 @@ public class SettingActivity extends BaseActivity {
 
     private String curSkin;
 
-    private static final String NIGHT_URL = "http://app.2345.com/browser/api/data/ThemeStyle.skin";
+    private static final String NIGHT_URL = "http://app.2345.com/browser/api/data/NightTheme.skin";
     private static final String GOLD_URL = "http://app.2345.com/browser/api/data/CrazyGold.skin";
 
 
@@ -78,7 +78,7 @@ public class SettingActivity extends BaseActivity {
 
     @OnClick(R.id.update_online)
     public void onlineUpdate() {
-                FileDownloader.getImpl().create(GOLD_URL).setPath(ThemeUtil.THEME_PATH_HOME).setListener(new
+                FileDownloader.getImpl().create(GOLD_URL).setPath(ThemeUtil.GOLD_THEME_PATH).setListener(new
                                                                                                   FileDownloadListener
                         () {
                     @Override

@@ -17,7 +17,6 @@ public class ThemeUtil {
     public static final String GOLD_THEME_PATH = Environment.getExternalStorageDirectory()+File
             .separator+GOLD_THEME_NAME;
 
-    public static final String THEME_PATH_HOME = Environment.getExternalStorageDirectory()+File
-            .separator;
+    public static final String THEME_PATH_HOME = Environment.getExternalStorageDirectory().getAbsolutePath();
 
 }
