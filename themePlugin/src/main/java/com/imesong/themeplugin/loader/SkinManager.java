@@ -153,7 +153,7 @@ public class SkinManager implements ISkinLoader {
 				try {
 					if (params.length == 1) {
 						String skinPkgPath = params[0];
-
+						Log.d("syq","skinPkgPath=="+skinPkgPath);
 						File file = new File(skinPkgPath); 
 						if(file == null || !file.exists()){
 							return null;
@@ -166,7 +166,7 @@ public class SkinManager implements ISkinLoader {
 						AssetManager assetManager = AssetManager.class.newInstance();
 						Method addAssetPath = assetManager.getClass().getMethod("addAssetPath", String.class);
 						addAssetPath.invoke(assetManager, skinPkgPath);
-						Log.d("syq","skinPkgPath"+skinPkgPath);
+
 						Resources superRes = context.getResources();
 						Resources skinResource = new Resources(assetManager,superRes.getDisplayMetrics(),superRes.getConfiguration());
 						

@@ -3,21 +3,19 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
-    <color name="color_content_text_color">@android:color/holo_green_dark</color>
 
-    <color name="color_app_bg">#003333</color>
-    <color name="color_title_bar_bg">#006666</color>
-    <color name="color_title_bar_text">#CCFFFF</color>
+    <color name="color_app_bg">#ffffff</color>
+    <color name="color_title_bar_bg">#ecf0f1</color>
+    <color name="color_title_bar_text">#7f8c8d</color>
 
+    <color name="color_new_item_bg">#ffffff</color>
+    <color name="color_new_item_title">#000000</color>
+    <color name="color_new_item_title_pressed">#0f0</color>
+    <color name="color_new_item_synopsis">#2c3e50</color>
+    <color name="color_new_list_divider">#ebebeb</color>
 
-    <color name="color_new_item_bg">#003333</color>
-    <color name="color_new_item_title">#fffed6</color>
-    <color name="color_new_item_title_pressed">#ffffff</color>
-    <color name="color_new_item_synopsis">#CCFFCC</color>
-    <color name="color_new_list_divider">#115eeb98</color>
+    <drawable name="color_news_item_normal">#ffffff</drawable>
+    <drawable name="color_news_item_pressed">#11000000</drawable>
 
-
-    <drawable name="color_news_item_normal">#003333</drawable>
-    <drawable name="color_news_item_pressed">#11ffffff</drawable>
-    <color name="color_sel_skin_btn_text">#ffffff</color>
+    <color name="color_sel_skin_btn_text">#24302b</color>
 </resources>

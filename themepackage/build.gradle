@@ -1,4 +1,4 @@
-apply plugin: 'com.android.library'
+apply plugin: 'com.android.application'
 def skinName = "ThemeStyle.skin"
 
 android {
@@ -24,7 +24,7 @@ dependencies {
     testCompile 'junit:junit:4.12'
 }
 
-final def TARGET_SKIN_DIR = '../skin-package/'
+final def TARGET_SKIN_DIR = './skin-package/'
 assembleRelease.doLast {
     def dir = new File(TARGET_SKIN_DIR)
     if (!dir.exists()) {
@@ -37,11 +37,11 @@ assembleRelease.doLast {
     }
 
     copy {
-        from('build/outputs/aar')
+        from('build/outputs/apk')
         into(TARGET_SKIN_DIR)
         include '*.aar'
-        exclude '**/*-unaligned.aar'
-        rename ('themepackage-release.aar', skinName)
+        exclude '**/*-unaligned.apk'
+        rename ('themepackage-release.apk', skinName)
     }
 
 }
@@ -59,10 +59,10 @@ assembleDebug.doLast {
     }
 
     copy {
-        from('build/outputs/aar')
+        from('build/outputs/apk')
         into(TARGET_SKIN_DIR)
         include '*.apk'
-        exclude '**/*-unaligned.aar'
-        rename('themepackage-debug.aar', skinName)
+        exclude '**/*-unaligned.apk'
+        rename('themepackage-debug.apk', skinName)
     }
 }
