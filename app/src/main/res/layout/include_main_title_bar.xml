@@ -18,7 +18,7 @@
         android:textColor="@color/color_title_bar_text"
         android:textSize="20sp" />
 
-    <Button
+    <TextView
         android:id="@+id/title_bar_setting_btn"
         android:layout_width="48dp"
         android:layout_height="48dp"

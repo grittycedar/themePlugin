@@ -1,10 +1,5 @@
 package com.imesong.themeplugin.util;
 
-/**
- * Object Utils
- * 
- * @author fengjun
- */
 public class ObjectUtils {
 
     private ObjectUtils() {

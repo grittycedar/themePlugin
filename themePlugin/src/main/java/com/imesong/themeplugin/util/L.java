@@ -4,8 +4,6 @@ import android.util.Log;
 
 /**
  * Log Utils for debug
- * 
- * @author fengjun
  */
 public class L {
 

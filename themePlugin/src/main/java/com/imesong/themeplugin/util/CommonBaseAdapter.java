@@ -9,12 +9,6 @@ import android.widget.BaseAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @description  通用listview适配器
- * @author       fengjun
- * @version      1.0
- * @created      2015-5-15
- */
 public abstract class CommonBaseAdapter<T> extends BaseAdapter {
 
 	protected List<T> mDatas;

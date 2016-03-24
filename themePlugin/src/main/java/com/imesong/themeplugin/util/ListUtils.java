@@ -7,8 +7,6 @@ import java.util.List;
 
 /**
  * List Utils
- * 
- * @author fengjun
  */
 public class ListUtils {
 

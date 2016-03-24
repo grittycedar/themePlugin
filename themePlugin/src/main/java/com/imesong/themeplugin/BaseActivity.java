@@ -21,8 +21,6 @@ import java.util.List;
  * Base Activity for development
  *
  * <p>NOTICE:<br> You should extends from this if you what to do skin change
- *
- * @author fengjun
  */
 public class BaseActivity extends Activity implements ISkinUpdate, IDynamicNewView {
 

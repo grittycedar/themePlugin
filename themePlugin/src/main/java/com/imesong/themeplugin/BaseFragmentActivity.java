@@ -24,8 +24,6 @@ import java.util.List;
  * 
  * <p>NOTICE:<br> 
  * You should extends from this if you want to do skin change
- * 
- * @author fengjun
  */
 public class BaseFragmentActivity extends FragmentActivity implements ISkinUpdate, IDynamicNewView {
 	

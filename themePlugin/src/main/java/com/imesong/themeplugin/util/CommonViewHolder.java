@@ -12,8 +12,6 @@ import android.widget.TextView;
 
 /**
  * Common View Holder to establish a absview
- * 
- * @author fengjun
  */
 public class CommonViewHolder {
 	

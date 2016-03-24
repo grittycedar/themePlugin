@@ -20,7 +20,6 @@ import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -32,7 +31,7 @@ import java.util.List;
 public class ArticleListFragment extends BaseFragment {
 
     private TextView titleText;
-    private Button settingBtn;
+    private TextView settingBtn;
     private ListView newsList;
     private RelativeLayout titleBarLayout;
     private NewsAdapter adapter;
@@ -85,7 +84,7 @@ public class ArticleListFragment extends BaseFragment {
         });
 
         titleText = (TextView) v.findViewById(R.id.title_text);
-        settingBtn = (Button) v.findViewById(R.id.title_bar_setting_btn);
+        settingBtn = (TextView) v.findViewById(R.id.title_bar_setting_btn);
 
         titleText.setText("Small Article");
 
