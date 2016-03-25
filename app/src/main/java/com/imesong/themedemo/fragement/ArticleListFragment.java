@@ -1,7 +1,6 @@
 package com.imesong.themedemo.fragement;
 
 import com.imesong.themedemo.R;
-import com.imesong.themedemo.activity.DetailActivity;
 import com.imesong.themedemo.activity.SettingActivity;
 import com.imesong.themedemo.entity.News;
 import com.imesong.themeplugin.BaseFragment;
@@ -18,8 +17,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -73,15 +70,6 @@ public class ArticleListFragment extends BaseFragment {
         adapter = new NewsAdapter(this.getActivity(), datas);
 
         newsList.setAdapter(adapter);
-
-        newsList.setOnItemClickListener(new OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent();
-                intent.setClass(getActivity(), DetailActivity.class);
-                startActivity(intent);
-            }
-        });
 
         titleText = (TextView) v.findViewById(R.id.title_text);
         settingBtn = (TextView) v.findViewById(R.id.title_bar_setting_btn);
